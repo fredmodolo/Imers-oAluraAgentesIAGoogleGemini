@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Assistente de Políticas</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h1>Assistente de Políticas Internas <div class="titulo">InovaTechAI</div></h1>
+    <div class="main-content-container"> 
+        <div class="response-display"> 
+            {% if pergunta %}
+                <p><strong>Você:</strong> {{ pergunta }}</p>
+                <p><strong>Assistente:</strong> {{ resposta }}</p>
+                {% if citacoes %}
+                    <p><strong>Citações:</strong></p>
+                    <ul>
+                        {% for citacao in citacoes %}
+                            <li>Doc: {{ citacao.documento }}, Pág: {{ citacao.pagina }}<br>Trecho: {{ citacao.trecho }}</li>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+            {% endif %}
+        </div> 
+        <form class="pergunta" action="/perguntar" method="post"> 
+            <div class="question-area">
+                <input type="text" id="user-input-alt" name="pergunta" placeholder="Digite sua pergunta aqui..." required>
+                <button type="submit">Enviar</button> 
+            </div> 
+        </form> 
+    </div> 
+
+</body>
+</html>
